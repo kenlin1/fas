@@ -27,7 +27,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-      // auth.userDetailsService(secureService).passwordEncoder(new BCryptPasswordEncoder());
+        //密码加密策略
+      //auth.userDetailsService(secureService).passwordEncoder(new BCryptPasswordEncoder());
     	auth.userDetailsService(secureService);
     }
 
