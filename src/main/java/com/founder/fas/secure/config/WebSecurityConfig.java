@@ -39,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.and()
 		.formLogin().loginPage("/login").failureUrl("/login?error").permitAll()
 		.and()
-		.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET")).permitAll();//定义登出方式
+		.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET")).permitAll();//定义登出方式 
     }
 }
 
