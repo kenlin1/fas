@@ -27,15 +27,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-      // auth.userDetailsService(secureService).passwordEncoder(new BCryptPasswordEncoder());
+        //密码加密策略
+      //auth.userDetailsService(secureService).passwordEncoder(new BCryptPasswordEncoder());
     	auth.userDetailsService(secureService);
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
     	http.authorizeRequests().antMatchers("/css/**").permitAll().anyRequest()
-		.fullyAuthenticated().and().formLogin().loginPage("/login")
-		.failureUrl("/login?error").permitAll().and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET")).permitAll();
+		.fullyAuthenticated()
+		.and()
+		.formLogin().loginPage("/login").failureUrl("/login?error").permitAll()
+		.and()
+		.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET")).permitAll();//定义登出方式
     }
 }
 
