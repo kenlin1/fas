@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<title th:text="${title}">Title</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
+	href="../../css/bootstrap.min.css" />
+</head>
+<body>
+	<div class="container">
+		<div class="navbar">
+			<div class="navbar-inner">
+				<a class="brand" href="/"> Fas </a>
+				<ul class="nav">
+					<li><a th:href="@{/}" href="home.html"> 首页 </a></li>
+					<li><a th:href="@{/user}" > 用户页面 </a></li>
+					<li><a th:href="@{/admin}" > 管理员页面 </a></li>
+					<li><a th:href="@{/res}" > restful </a></li>
+					<li><a th:href="@{/logout}"> 退出 </a></li>
+				</ul>
+			</div>
+		</div>
+		<h1 th:text="${title}">Title</h1>
+		<div th:text="${message}">Fake content</div>
+		<div id="created" th:text="${#dates.format(date)}">July 11,
+			2012 2:17:16 PM CDT</div>
+		
+		<div sec:authorize="isAuthenticated()">
+		所有认证用户可以看见这条信息
+		</div>
+		<div sec:authorize="hasRole('ROLE_ADMIN')">
+		管理员可以看见这条信息
+		</div>
+		<div sec:authorize="hasRole('ROLE_USER')">
+		 普通用户可以看见这条信息
+		</div>
+		<div sec:authorize="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
+		  普通用户和管理员可以看见这条信息
+		</div>
+<!--         <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form> -->
+        <form th:action="@{/logout}" method="get">
+            <input type="submit" value="退出"/>
+        </form> 
+	</div>
+</body>
+</html>
